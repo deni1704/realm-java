@@ -343,7 +343,7 @@ public class DynamicRealmObject extends RealmObject implements RealmObjectProxy 
         long columnIndex = proxyState.getRow$realm().getColumnIndex(fieldName);
         try {
             LinkView linkView = proxyState.getRow$realm().getLinkList(columnIndex);
-            String className = RealmSchema.getSchemaForTable(linkView.getTargetTable());
+            String className = RealmBaseSchema.getSchemaForTable(linkView.getTargetTable());
             return new RealmList<DynamicRealmObject>(className, linkView, proxyState.getRealm$realm());
         } catch (IllegalArgumentException e) {
             checkFieldType(fieldName, columnIndex, RealmFieldType.LIST);
@@ -776,7 +776,7 @@ public class DynamicRealmObject extends RealmObject implements RealmObjectProxy 
     public String getType() {
         proxyState.getRealm$realm().checkIfValid();
 
-        return RealmSchema.getSchemaForTable(proxyState.getRow$realm().getTable());
+        return RealmBaseSchema.getSchemaForTable(proxyState.getRow$realm().getTable());
     }
 
     /**

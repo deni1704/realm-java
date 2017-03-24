@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import io.realm.RealmConfiguration;
+import io.realm.RealmNativeSchema;
 import io.realm.RealmSchema;
 import io.realm.internal.android.AndroidCapabilities;
 import io.realm.internal.android.AndroidRealmNotifier;
@@ -343,7 +344,7 @@ public final class SharedRealm implements Closeable, NativeObject {
      * Updates the underlying schema based on the schema description.
      * Calling this method must be done from inside a write transaction.
      */
-    public void updateSchema(RealmSchema schema, long version) {
+    public void updateSchema(RealmNativeSchema schema, long version) {
         nativeUpdateSchema(nativePtr, schema.getNativePtr(), version);
     }
 
@@ -356,7 +357,7 @@ public final class SharedRealm implements Closeable, NativeObject {
         return nativeIsAutoRefresh(nativePtr);
     }
 
-    public boolean requiresMigration(RealmSchema schema) {
+    public boolean requiresMigration(RealmNativeSchema schema) {
         return nativeRequiresMigration(nativePtr, schema.getNativePtr());
     }
 

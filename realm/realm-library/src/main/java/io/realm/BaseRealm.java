@@ -651,6 +651,10 @@ abstract class BaseRealm implements Closeable {
         super.finalize();
     }
 
+    public SharedRealm getSharedRealm() {
+        return sharedRealm;
+    }
+
     // Internal delegate for migrations.
     protected interface MigrationCallback {
         void migrationComplete();
